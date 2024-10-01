@@ -4,34 +4,38 @@ using namespace std;
 
 
 // } Driver Code Ends
+
+
 class Solution{
-    public:
-    int lenOfLongSubarr(int A[],  int N, int K) 
-    { 
-       std::unordered_map<int, int> sumMap;
-        int curr_sum = 0;
-        int max_len = 0;
-
+public:
+    int lenOfLongSubarr(int A[], int N, int K) {
+        std::unordered_map<int, int> prefixSumMap;
+        
+        int prefixSum = 0;
+        int maxLength = 0;
+        
         for (int i = 0; i < N; i++) {
-            curr_sum += A[i];
-
-            if (curr_sum == K) {
-                max_len = i + 1;
+            prefixSum += A[i];
+            
+            if (prefixSum == K) {
+                maxLength = i + 1;
             }
-
-            if (sumMap.find(curr_sum - K) != sumMap.end()) {
-                max_len = std::max(max_len, i - sumMap[curr_sum - K]);
+            
+            if (prefixSumMap.find(prefixSum - K) != prefixSumMap.end()) {
+                maxLength = std::max(maxLength, i - prefixSumMap[prefixSum - K]);
             }
-
-            if (sumMap.find(curr_sum) == sumMap.end()) {
-                sumMap[curr_sum] = i;
+            
+            if (prefixSumMap.find(prefixSum) == prefixSumMap.end()) {
+                prefixSumMap[prefixSum] = i;
             }
         }
-
-        return max_len;
-    } 
-
+        
+        return maxLength;
+    }
 };
+
+
+
 
 //{ Driver Code Starts.
 
