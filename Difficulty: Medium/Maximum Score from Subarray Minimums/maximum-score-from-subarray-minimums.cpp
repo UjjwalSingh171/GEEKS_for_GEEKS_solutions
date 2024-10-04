@@ -5,26 +5,25 @@ using namespace std;
 
 // } Driver Code Ends
 
-
+//#include<algorithm>
 class Solution {
   public:
-    // Function to find pair with maximum sum
-    int pairWithMaxSum(vector<int> &arr) {
-        // Your code goes hereint n = arr.size();
-        // Variable to store the maximum sum
-        int maxSum = INT_MIN;
+    
+    int pairWithMaxSum(vector<int> &arr) 
+    {
         int n = arr.size();
-
-        // Iterate over the array and check adjacent pairs
-        for (int i = 1; i < n; i++) {
-            // Calculate the sum of current adjacent pair
-            int currSum = arr[i] + arr[i - 1];
-            // Update maxSum if the current sum is greater
-            maxSum = max(maxSum, currSum);
+        if(n<2)
+        {
+            return -1;
         }
+        int maxsum = arr[0]+arr[1];
         
-        // Return the maximum sum found
-        return maxSum;
+       for(int i = 1 ; i<n-1 ; i++)
+       {
+           int cursum = arr[i]+arr[i+1];
+           maxsum = max(maxsum,cursum);
+       }
+       return maxsum;
     }
 };
 
