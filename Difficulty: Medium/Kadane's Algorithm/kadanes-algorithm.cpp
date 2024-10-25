@@ -11,19 +11,17 @@ class Solution {
     // Function to find the sum of contiguous subarray with maximum sum.
     int maxSubarraySum(vector<int> &arr) {
         // code here...
-        int n = arr.size();
-        int maxi = INT_MIN;
-        int cursum = 0;
-        for(int i = 0 ; i<n ; i++)
-        {
-            cursum += arr[i];
-            maxi = max(maxi,cursum);
-            if(cursum<0)
-            {
-                cursum = 0;
-            }
+        int maxSum = arr[0];        // Initialize maxSum with the first element
+        int currentSum = arr[0];     // Initialize currentSum with the first element
+
+        for (int i = 1; i < arr.size(); i++) {
+            // Update currentSum to either start fresh from current element or continue the existing subarray
+            currentSum = max(arr[i], currentSum + arr[i]);
+            // Update maxSum if currentSum is greater
+            maxSum = max(maxSum, currentSum);
         }
-        return maxi;
+
+        return maxSum;
     }
 };
 
@@ -45,7 +43,7 @@ int main() {
         }
 
         Solution ob;
-        cout << ob.maxSubarraySum(arr) << endl;
+        cout << ob.maxSubarraySum(arr) << endl << "~" << endl;
     }
 }
 // } Driver Code Ends
